@@ -13,6 +13,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $users = \App\Models\User::factory(5)->create();
+        $categories = \App\Models\Category::factory(5)->create();
+
+        $users->each(function($user) use ($categories) {
+            $categories->each(function($category) use ($user) {
+                \App\Models\Question::factory(15)->create([
+                    'user_id' => $user->id,
+                    'category_id' => $category->id
+                ]);
+            });
+        });
     }
 }
