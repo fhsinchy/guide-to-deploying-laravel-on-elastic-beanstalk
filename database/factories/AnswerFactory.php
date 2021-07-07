@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Question;
+use App\Models\Answer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class QuestionFactory extends Factory
+class AnswerFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Question::class;
+    protected $model = Answer::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,9 @@ class QuestionFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence(2, false),
-            'body' => $this->faker->paragraph(10, false),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->email(),
+            'body' => $this->faker->paragraph(5),
         ];
     }
 }

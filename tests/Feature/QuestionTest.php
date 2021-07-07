@@ -26,4 +26,23 @@ class QuestionTest extends TestCase
             $user->name,
         ]);
     }
+
+    public function test_any_user_can_view_a_single_question()
+    {
+        $user = \App\Models\User::factory()->create();
+        $category = \App\Models\Category::factory()->create();
+
+        $question = \App\Models\Question::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id
+        ]);
+
+        $response = $this->get(route('questions.show', $question));
+
+        $response->assertSee([
+            $question->title,
+            $question->body,
+            $user->name,
+        ]);
+    }
 }

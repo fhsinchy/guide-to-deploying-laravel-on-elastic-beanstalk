@@ -18,10 +18,16 @@ class DatabaseSeeder extends Seeder
 
         $users->each(function($user) use ($categories) {
             $categories->each(function($category) use ($user) {
-                \App\Models\Question::factory(15)->create([
+                $questions = \App\Models\Question::factory(15)->create([
                     'user_id' => $user->id,
                     'category_id' => $category->id
                 ]);
+
+                $questions->each(function($question) {
+                    \App\Models\Answer::factory(2)->create([
+                        'question_id' => $question->id,
+                    ]);
+                });
             });
         });
     }
