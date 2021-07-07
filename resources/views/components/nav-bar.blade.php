@@ -14,36 +14,55 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-            <a href="{{ route('questions.index') }}" class="navbar-item">
-                Questions
-            </a>
-
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                Categories
+                @auth
+                <a href="{{ route('dashboard') }}" class="navbar-item">
+                    Dashboard
+                </a>
+                @endauth
+                <a href="{{ route('questions.index') }}" class="navbar-item">
+                    Questions
                 </a>
 
-                <div class="navbar-dropdown">
-                @if ($categories)
-                    @foreach ($categories as $category)
-                        <a href="{{ route('questions.index') . '?category=' . $category->id }}" class="navbar-item">
-                            {{ $category->title }}
-                        </a>
-                    @endforeach
-                @endif
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                    Categories
+                    </a>
+
+                    <div class="navbar-dropdown">
+                    @if ($categories)
+                        @foreach ($categories as $category)
+                            <a href="{{ route('questions.index') . '?category=' . $category->id }}" class="navbar-item">
+                                {{ $category->title }}
+                            </a>
+                        @endforeach
+                    @endif
+                    </div>
                 </div>
-            </div>
             </div>
 
             <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                <a href="/register" class="button is-primary">
-                    <strong>Sign up</strong>
-                </a>
-                <a href="/login" class="button is-light">
-                    Log in
-                </a>
+                    @auth
+                    <a href="#" class="button is-primary">
+                        <strong>Ask</strong>
+                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="/logout" class="button is-light"
+                        onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            Log out
+                        </a>
+                    </form>
+                    @else
+                    <a href="/register" class="button is-primary">
+                        <strong>Sign up</strong>
+                    </a>
+                    <a href="/login" class="button is-light">
+                        Log in
+                    </a>
+                    @endauth
                 </div>
             </div>
             </div>
