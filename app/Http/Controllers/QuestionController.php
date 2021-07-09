@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,9 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::select('id', 'title')->latest()->get();
+
+        return view('questions.create', compact('categories'));
     }
 
     /**
@@ -51,7 +54,14 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Question::create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'category_id' => $request->category,
+            'user_id' => auth()->id(),
+        ]);
+
+        return back();
     }
 
     /**

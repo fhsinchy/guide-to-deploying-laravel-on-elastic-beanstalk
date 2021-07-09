@@ -19,7 +19,7 @@
                     Dashboard
                 </a>
                 @endauth
-                <a href="{{ route('questions.index') }}" class="navbar-item">
+                <a href="{{ route('questions.index') }}" class="navbar-item {{ request()->routeIs('questions.index') ? 'is-active' : ''}}"" >
                     Questions
                 </a>
 
@@ -44,7 +44,7 @@
             <div class="navbar-item">
                 <div class="buttons">
                     @auth
-                    <a href="#" class="button is-primary">
+                    <a href="{{ route('questions.create') }}" class="button is-primary">
                         <strong>Ask</strong>
                     </a>
                     <form method="POST" action="{{ route('logout') }}">

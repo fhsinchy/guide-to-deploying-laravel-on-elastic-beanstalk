@@ -20,6 +20,8 @@ Route::get('/', function () {
 Route::resource('questions', App\Http\Controllers\QuestionController::class)->only([
     'index',
     'show',
+    'create',
+    'store',
 ])->names('questions');
 Route::resource('answers', App\Http\Controllers\AnswerController::class)->only(['store'])->names('answers');
 
