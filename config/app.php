@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Question Board'),
+    'name' => env('APP_NAME', 'Laravel On Beanstalk'),
 
     /*
     |--------------------------------------------------------------------------
