@@ -1,10 +1,7 @@
 #!/bin/sh
 
-# Install Latest Node
-
-# Some Laravel apps need Node & NPM for the frontend assets.
-# This script installs the latest Node 12.x alongside
-# with the paired NPM release.
+# Installs the LTS version of Node.js from NodeSource
+# https://github.com/nodesource/distributions#rpm
 
 sudo yum remove -y nodejs npm
 
@@ -15,7 +12,3 @@ sudo yum clean all
 curl --silent --location https://rpm.nodesource.com/setup_lts.x | sudo bash -
 
 sudo yum install nodejs -y
-
-# Uncomment this line and edit the Version of NPM
-# you want to install instead of the default one.
-# npm i -g npm@6.14.4

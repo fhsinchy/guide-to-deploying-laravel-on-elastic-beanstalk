@@ -1,11 +1,6 @@
 #!/bin/sh
 
-# Install PhpRedis
-
-# Laravel uses by default PhpRedis, so the extension needs to be installed.
-# https://github.com/phpredis/phpredis
-
-# For Predis, this extension is not necessarily needed.
-# Enabled by default since it's latest Laravel version's default driver.
+# PhpRedis is the default Redis driver for Larave
+# https://laravel.com/docs/8.x/redis#introduction
 
 sudo yum -y install php-redis

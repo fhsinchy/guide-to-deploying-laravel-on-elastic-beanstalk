@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Update Composer binary.
+# Updates composer to the latest version
+# https://getcomposer.org/doc/03-cli.md#self-update-selfupdate-
 
 export COMPOSER_HOME=/root
 

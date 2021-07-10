@@ -1,16 +1,7 @@
 #!/bin/sh
 
-# Install Supervisor using the EPEL repository.
-
-# This script will install Supervisor and configure your workers
-# that are added in the .platform/files/supervisor.ini file.
-# It's highly recommended to add all your workers in supervisor.ini
-# to avoid conflicts for further updates.
-
-# The `supervisorctl restart all` command will be
-# triggered in the postdeploy hook to avoid
-# any errors (the app is not set yet and
-# it might trigger spawn errors, which will exit with non-zero code)
+# Installs supervisor from EPEL repository
+# http://supervisord.org/installing.html#installing-a-distribution-package
 
 sudo amazon-linux-extras enable epel
 

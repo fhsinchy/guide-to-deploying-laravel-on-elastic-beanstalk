@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Run Caches
-
-# After the deployment, it's highly recommended
-# to re-run the caches for config, routes and views.
+# Optimizing configuration loading, route loading and view loading
+# https://laravel.com/docs/8.x/deployment#optimization
 
 php artisan config:cache
 

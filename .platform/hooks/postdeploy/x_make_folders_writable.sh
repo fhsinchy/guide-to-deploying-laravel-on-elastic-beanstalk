@@ -1,14 +1,10 @@
 #!/bin/sh
 
-# Make Folders Writable
-
-# After the deployment finished, give the full 0777 permissions
-# to some folders that should be writable, such as the storage/
-# or bootstrap/cache/, for example.
+# Laravel requires some directories to be writable
 
 sudo chmod -R 777 storage/
 sudo chmod -R 777 bootstrap/cache/
 
-# Storage Symlink Creation
+# Sets up the storage symlinks
 
 php artisan storage:link
