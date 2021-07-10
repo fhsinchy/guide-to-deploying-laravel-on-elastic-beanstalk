@@ -14,7 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $categories = \App\Models\Category::factory(5)->create();
+        $categories = \App\Models\Category::all();
+
+        if ($categories->count() === 0) {
+            $categories = \App\Models\Category::factory(5)->create();
+        }
 
         if (App::environment(['local', 'staging'])) {
             $users = \App\Models\User::factory(5)->create();
