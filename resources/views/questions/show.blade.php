@@ -7,7 +7,7 @@
                     <div class="media">
                         <div class="media-content">
                             <p class="title is-4">{{ $question->title }}</p>
-                            <p class="subtitle is-6">{{ $question->user->email }}</p>
+                            <p class="subtitle is-6">{{ $question->user->name }}</p>
                         </div>
                     </div>
 
