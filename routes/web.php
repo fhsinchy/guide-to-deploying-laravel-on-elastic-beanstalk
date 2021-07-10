@@ -24,6 +24,7 @@ Route::resource('questions', App\Http\Controllers\QuestionController::class)->on
     'store',
 ])->names('questions');
 Route::resource('answers', App\Http\Controllers\AnswerController::class)->only(['store'])->names('answers');
+Route::resource('categories', App\Http\Controllers\CategoryController::class)->only(['show'])->names('categories');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

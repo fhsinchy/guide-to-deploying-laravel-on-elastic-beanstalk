@@ -31,7 +31,7 @@
                     <div class="navbar-dropdown">
                     @if ($categories)
                         @foreach ($categories as $category)
-                            <a href="{{ route('questions.index') . '?category=' . $category->id }}" class="navbar-item">
+                            <a href="{{ route('categories.show', $category) }}" class="navbar-item">
                                 {{ $category->title }}
                             </a>
                         @endforeach

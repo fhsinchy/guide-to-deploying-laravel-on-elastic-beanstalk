@@ -16,17 +16,7 @@ class QuestionController extends Controller
     public function index()
     {
 
-        $questions = Question::select('id', 'title', 'body', 'category_id', 'user_id', 'created_at');
-
-        if (request()->has('category')) {
-            $questions = $questions->where('category_id', request()->get('category'));
-        }
-
-        if (request()->has('user')) {
-            $questions = $questions->where('user_id', request()->get('user'));
-        }
-
-        $questions = $questions
+        $questions = Question::select('id', 'title', 'body', 'category_id', 'user_id', 'created_at')
         ->with(['user', 'category'])
         ->latest()
         ->get();
