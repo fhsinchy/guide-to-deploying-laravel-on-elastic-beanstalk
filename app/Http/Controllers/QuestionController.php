@@ -15,11 +15,18 @@ class QuestionController extends Controller
      */
     public function index()
     {
+        $questions = [];
 
-        $questions = Question::select('id', 'title', 'body', 'category_id', 'user_id', 'created_at')
-        ->with(['user', 'category'])
-        ->latest()
-        ->get();
+        if (cache()->has('questions')) {
+            $questions = cache()->get('questions');
+        } else {
+            $questions = Question::select('id', 'title', 'body', 'category_id', 'user_id', 'created_at')
+            ->with(['user', 'category'])
+            ->latest()
+            ->get();
+
+            cache()->put('questions', $questions, now()->addHours(12));
+        }
 
         return view('questions.index', compact('questions'));
     }
@@ -50,6 +57,8 @@ class QuestionController extends Controller
             'category_id' => $request->category,
             'user_id' => auth()->id(),
         ]);
+
+        cache()->forget('questions');
 
         return back();
     }
