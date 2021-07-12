@@ -2,4 +2,4 @@
 
 # Restarts all supervisor workers
 
-sudo supervisorctl restart all
+# sudo supervisorctl restart all
