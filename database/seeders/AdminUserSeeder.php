@@ -15,7 +15,7 @@ class AdminUserSeeder extends Seeder
      */
     public function run()
     {
-        if (!User::where('email', 'farhan@laravel-on-beanstalk.site')->exists()) {
+        if (User::select('email')->where('email', 'farhan@laravel-on-beanstalk.site')->doesntExist()) {
             User::create([
                 'name' => 'Farhan Hasin Chowdhury',
                 'email' => 'farhan@laravel-on-beanstalk.site',
