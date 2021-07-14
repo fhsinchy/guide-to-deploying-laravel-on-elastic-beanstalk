@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Restarts all supervisor workers
+# Rereads, updates configuration and restarts all supervisor workers
 
 sudo supervisorctl reread
 
