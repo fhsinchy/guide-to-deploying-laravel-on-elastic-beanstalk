@@ -1,5 +1,5 @@
 <x-site-layout>
-    @if($questions)
+    @if($questions->count() > 0)
     <div class="row columns is-multiline">
         @foreach ($questions as $question)
         <div class="column is-4">
