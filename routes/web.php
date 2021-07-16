@@ -20,14 +20,19 @@ Route::get('/', function () {
 Route::resource('questions', App\Http\Controllers\QuestionController::class)->only([
     'index',
     'show',
-    'create',
-    'store',
 ])->names('questions');
 Route::resource('answers', App\Http\Controllers\AnswerController::class)->only(['store'])->names('answers');
 Route::resource('categories', App\Http\Controllers\CategoryController::class)->only(['show'])->names('categories');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::resource('questions', App\Http\Controllers\QuestionController::class)->only([
+        'create',
+        'store',
+    ])->names('questions');
+});
 
 require __DIR__.'/auth.php';
