@@ -166,7 +166,7 @@ return [
 
     'defaults' => [
         'supervisor-1' => [
-            'connection' => env('QUEUE_CONNECTION', 'redis'),
+            'connection' => 'redis',
             'queue' => ['default'],
             'balance' => 'auto',
             'maxProcesses' => 1,
