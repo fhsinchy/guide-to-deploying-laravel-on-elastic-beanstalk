@@ -17,11 +17,6 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
-
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
 
@@ -31,7 +26,7 @@ jobs:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: ${{ env.EB_APPLICATION_NAME }}
-        environment_name: ${{ env.EB_APPLICATION_NAME_SHORT }}-${{ steps.extract_branch.outputs.branch }}
-        version_label: ${{ env.GITHUB_RUN_ID }}
+        environment_name: ${{ env.EB_APPLICATION_NAME_SHORT }}-master
+        version_label: ${{ env.GITHUB_SHA }}
         region: ${{ env.AWS_REGION }}
         deployment_package: deploy.zip
