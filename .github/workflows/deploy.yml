@@ -23,6 +23,6 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: laravel-on-beanstalk
           environment_name: lob-master
-          version_label: ${{ GITHUB_SHA }}
+          version_label: ${{ github.sha }}
           region: ap-southeast-1
           deployment_package: deploy.zip
