@@ -32,6 +32,6 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: ${{ env.EB_APPLICATION_NAME }}
         environment_name: ${{ env.EB_APPLICATION_NAME_SHORT }}-${{ steps.extract_branch.outputs.branch }}
-        version_label: ${{ env.GITHUB_SHA }}
+        version_label: ${{ env.GITHUB_RUN_ID }}
         region: ${{ env.AWS_REGION }}
         deployment_package: deploy.zip
