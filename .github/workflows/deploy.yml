@@ -1,17 +1,18 @@
 name: Laravel Deploy
+
+env:
+  AWS_REGION: ap-southeast-1
+  EB_APPLICATION_NAME_SHORT: lob
+  EB_APPLICATION_NAME: laravel-on-beanstalk
+  PIPELINE_ID: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
+
 on:
   push:
-    branches:
-    - master
+    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      AWS_REGION: ap-southeast-1
-      EB_APPLICATION_NAME_SHORT: lob
-      EB_APPLICATION_NAME: laravel-on-beanstalk
-      PIPELINE_ID: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
 
     steps:
 
