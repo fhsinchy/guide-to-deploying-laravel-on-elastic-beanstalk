@@ -11,6 +11,12 @@ sudo yum -y update
 
 sudo yum -y install supervisor
 
+sudo systemctl start supervisord
+
 sudo systemctl enable supervisord
 
 sudo cp .platform/files/supervisor.ini /etc/supervisord.d/laravel.ini
+
+sudo supervisorctl reread
+
+sudo supervisorctl update
