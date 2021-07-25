@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,6 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: laravel-on-beanstalk
           environment_name: lob-master
-          version_label: ${GITHUB_SHA}
+          version_label: ${{ GITHUB_SHA }}
           region: ap-southeast-1
           deployment_package: deploy.zip
