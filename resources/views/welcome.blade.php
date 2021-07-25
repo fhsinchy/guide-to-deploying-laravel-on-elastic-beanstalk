@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Laravel On Beanstalk</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -27,7 +27,9 @@
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                        <a href="{{ route('questions.index') }}" class="text-sm text-gray-700 underline">Questions</a>
+
+                        <a href="{{ route('login') }}" class="ml-4 text-sm text-gray-700 underline">Log in</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
@@ -116,7 +118,7 @@
                                 <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                             </svg>
 
-                            <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
+                            <a href="https://github.com/sponsors/fhsinchy" class="ml-1 underline">
                                 Sponsor
                             </a>
                         </div>
