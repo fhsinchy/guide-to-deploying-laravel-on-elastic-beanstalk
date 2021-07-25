@@ -11,22 +11,28 @@ jobs:
       AWS_REGION: ap-southeast-1
       EB_APPLICATION_NAME_SHORT: lob
       EB_APPLICATION_NAME: laravel-on-beanstalk
+      PIPELINE_ID: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
 
     steps:
 
-    - name: Checkout source code
-      uses: actions/checkout@v2
+      - name: Checkout source code
+        uses: actions/checkout@v2
 
-    - name: Generate deployment package
-      run: zip -r deploy.zip . -x '*.git*'
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
 
-    - name: Deploy to AWS Elastic Beanstalk
-      uses: einaregilsson/beanstalk-deploy@v17
-      with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: ${{ env.EB_APPLICATION_NAME }}
-        environment_name: ${{ env.EB_APPLICATION_NAME_SHORT }}-master
-        version_label: ${{ env.GITHUB_SHA }}
-        region: ${{ env.AWS_REGION }}
-        deployment_package: deploy.zip
+      - name: Generate deployment package
+        run: zip -r ${{ env.PIPELINE_ID }}.zip . -x '*.git*'
+
+      - name: Deploy to AWS Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v17
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ env.EB_APPLICATION_NAME }}
+          environment_name: ${{ env.EB_APPLICATION_NAME_SHORT }}-${{ steps.extract_branch.outputs.branch }}
+          version_label: ${{ GITHUB_SHA }}
+          region: ${{ env.AWS_REGION }}
+          deployment_package: ${{ env.PIPELINE_ID }}.zip
